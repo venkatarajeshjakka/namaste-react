@@ -19,7 +19,7 @@ const Body = () => {
     var response = await data.json();
 
     var restuarants =
-      response?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+      response?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
 
     var mappedList = restuarants.map((item) => {
