@@ -7,14 +7,18 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Error from './pages/Error';
 import RestaurantMenu from './pages/RestaurantMenu';
-
+import { UserProvider } from './utils/context/UserContext';
 const Grocery = lazy(() => import("./pages/Grocery"));
 
 const AppLayout = () => {
-    return (<div className="app">
-        <Header />
-        <Outlet />
-    </div>);
+
+    return (
+        <UserProvider>
+            <div className="app">
+                <Header />
+                <Outlet />
+            </div>
+        </UserProvider>);
 }
 
 const appRouter = createBrowserRouter([

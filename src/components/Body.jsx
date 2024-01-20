@@ -1,11 +1,14 @@
 import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import UserContext from "../utils/context/UserContext";
 import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
 const Body = () => {
   const [resData, setRestaurantData] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [filteredResturants, setFilteredRestaurant] = useState([]);
+
+  const userCtx = useContext(UserContext);
 
   const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
 
@@ -24,7 +27,6 @@ const Body = () => {
       response?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
 
-    console.log(restuarants);
     var mappedList = restuarants.map((item) => {
       return {
         name: item.info.name,
@@ -74,6 +76,15 @@ const Body = () => {
           >
             Search
           </button>
+        </div>
+        <div className="p-6 m-4 space-x-1">
+          <label>User Name</label>
+          <input
+            type="text"
+            className="border border-solid border-black rounded px-4 py-1"
+            onChange={(e) => userCtx.setUserName(e.target.value)}
+            value={userCtx.loggedInUser}
+          />
         </div>
         <div className="p-4">
           <button
